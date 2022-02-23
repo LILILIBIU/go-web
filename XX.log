@@ -1,9 +1,1 @@
 {"name":"你好！","password":"gh12345","telephone":"123098557","email":"1259566@qq.com"}
-项目：2022/02/21 21:54:13 9
-项目：2022/02/21 21:54:13 insert is Ok!
-项目：2022/02/21 21:54:13 %v {0 你好！ gh12345 1252349566@qq.com 12309238557 false false }
-项目：2022/02/22 19:15:19 9
-项目：2022/02/22 19:15:20 insert data error: Error 1062: Duplicate entry '1252349566@qq.com' for key 'user.user_email_uindex'
-项目：2022/02/22 19:18:25 9
-项目：2022/02/22 19:18:25 insert is Ok!
-项目：2022/02/22 19:18:25 %v {0 你好！ gh12345 125266@qq.com 309238557 false false }
