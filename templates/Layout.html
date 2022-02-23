@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <h1>Radio组件的使用</h1>
+    <el-radio v-model="label" label="男">男</el-radio>
+    <el-radio v-model="label" label="女">女</el-radio>
+</div>
+</body>
+<!-- import Vue before Element -->
+<script crossorigin="anonymous" integrity="sha384-K2IvQblP3jUVM1cdWuU0b8cZ3rrTUBLAB/m8Hrkgki/493W78QNziziz+P8WZOPd" src="http://lib.baomitu.com/vue/2.5.6/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+new Vue ({
+    el: '#app',
+        data(){
+            return{
+                label:'男'
+            }
+        }
+    })
+</script>
+</html>
