@@ -1,1 +1,22 @@
 {"name":"你好！","password":"gh12345","telephone":"123098557","email":"1259566@qq.com"}
+项目：2022/03/05 12:20:52 9
+项目：2022/03/05 12:20:52 insert data error: Error 1062: Duplicate entry '125266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 12:23:12 9
+项目：2022/03/05 12:23:12 insert is Ok!
+项目：2022/03/05 12:23:12 %v {0 你好！ gh12345 12266@qq.com 30928557 false false }
+项目：2022/03/05 18:40:00 9
+项目：2022/03/05 18:40:00 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 18:40:04 9
+项目：2022/03/05 18:40:04 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 18:40:07 9
+项目：2022/03/05 18:40:07 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 18:40:10 9
+项目：2022/03/05 18:40:10 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 18:40:12 9
+项目：2022/03/05 18:40:12 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 18:54:41 9
+项目：2022/03/05 18:54:41 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 18:54:47 9
+项目：2022/03/05 18:54:47 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/05 18:54:50 9
+项目：2022/03/05 18:54:50 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'

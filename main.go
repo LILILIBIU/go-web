@@ -20,5 +20,4 @@ func main() {
 	DB := SQL.InitMysql()
 	//初始化路由
 	router.InitRouter(DB)
-
 }
