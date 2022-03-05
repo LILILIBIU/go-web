@@ -21,7 +21,7 @@ func InitRouter(DB *sql.DB) {
 	r.GET("/Login", login)
 	r.GET("/Register", register)
 
-	//用于执行用户操作的api哈哈哈
+	//用于执行用户操作的apiggg
 
 	AuthGroup := r.Group("/auth")
 	{
