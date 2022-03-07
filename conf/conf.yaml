@@ -1,6 +1,0 @@
-#定义一个数据库连接的yaml配置文件测试
-IpAddress: "127.0.0.1"
-Port: 3306
-UserName: "root"
-Password: 123456
-DataBaseName: "go_test"

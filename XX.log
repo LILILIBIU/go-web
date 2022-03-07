@@ -50,3 +50,45 @@
 项目：2022/03/05 22:50:46 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
 项目：2022/03/05 22:50:46 9
 项目：2022/03/05 22:50:46 insert data error: Error 1062: Duplicate entry '12266@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/07 10:55:34 9
+项目：2022/03/07 10:55:34 insert is Ok!
+项目：2022/03/07 10:55:34 %v {0 你好！ gh12345 1259566@qq.com 123098557 false false }
+项目：2022/03/07 11:59:13 9
+项目：2022/03/07 11:59:13 insert data error: Error 1062: Duplicate entry '1259566@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/07 11:59:16 9
+项目：2022/03/07 11:59:16 insert is Ok!
+项目：2022/03/07 11:59:16 %v {0 你好！ gh12345 12594566@qq.com 1230698557 false false }
+项目：2022/03/07 11:59:18 9
+项目：2022/03/07 11:59:18 insert data error: Error 1062: Duplicate entry '12594566@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/07 11:59:21 9
+项目：2022/03/07 11:59:21 insert data error: Error 1062: Duplicate entry '12594566@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/07 11:59:24 9
+项目：2022/03/07 11:59:24 insert data error: Error 1062: Duplicate entry '12594566@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/07 11:59:26 9
+项目：2022/03/07 11:59:26 insert is Ok!
+项目：2022/03/07 11:59:26 %v {0 你好！ gh12345 1259422566@qq.com 123085557 false false }
+项目：2022/03/07 11:59:30 9
+项目：2022/03/07 11:59:30 insert data error: Error 1062: Duplicate entry '123085557' for key 'user.user_telephone_uindex'
+项目：2022/03/07 11:59:33 9
+项目：2022/03/07 11:59:33 insert is Ok!
+项目：2022/03/07 11:59:33 %v {0 你好！ gh12345 1259422@qq.com 123087 false false }
+项目：2022/03/07 11:59:37 9
+项目：2022/03/07 11:59:37 insert data error: Error 1062: Duplicate entry '1259422@qq.com' for key 'user.user_email_uindex'
+项目：2022/03/07 11:59:39 9
+项目：2022/03/07 11:59:39 insert is Ok!
+项目：2022/03/07 11:59:39 %v {0 你好！ gh12345 12594422@qq.com 12313087 false false }
+项目：2022/03/07 11:59:43 9
+项目：2022/03/07 11:59:43 insert is Ok!
+项目：2022/03/07 11:59:43 %v {0 你好！ gh12345 125944229@qq.com 123130787 false false }
+项目：2022/03/07 11:59:45 9
+项目：2022/03/07 11:59:45 insert data error: Error 1062: Duplicate entry '123130787' for key 'user.user_telephone_uindex'
+项目：2022/03/07 11:59:47 9
+项目：2022/03/07 11:59:47 insert is Ok!
+项目：2022/03/07 11:59:47 %v {0 你好！ gh12345 1259464229@qq.com 12354130787 false false }
+项目：2022/03/07 11:59:49 9
+项目：2022/03/07 11:59:49 insert data error: Error 1406: Data too long for column 'telephone' at row 1
+项目：2022/03/07 11:59:50 9
+项目：2022/03/07 11:59:50 insert data error: Error 1406: Data too long for column 'telephone' at row 1
+项目：2022/03/07 11:59:55 9
+项目：2022/03/07 11:59:55 insert is Ok!
+项目：2022/03/07 11:59:55 %v {0 你好！ gh12345 12594647229@qq.com 12350787 false false }
