@@ -17,7 +17,7 @@ func init() {
 }
 func main() {
 	//初始化数据库
-	DB := SQL.InitMysql()
+	SQL.Init()
 	//初始化路由
-	router.InitRouter(DB)
+	router.InitRouter()
 }

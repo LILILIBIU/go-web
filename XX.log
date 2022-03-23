@@ -1,41 +1,10 @@
 {"name":"你好！","password":"gh12345","telephone":"123098557","email":"1259566@qq.com"}
-
-项目：2022/03/14 19:39:15 c.BindJSON faild!
-项目：2022/03/14 19:39:16 c.BindJSON faild!
-项目：2022/03/14 19:39:17 c.BindJSON faild!
-项目：2022/03/15 14:05:58 9
-项目：2022/03/15 14:06:00 insert data error: dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it.
-项目：2022/03/15 14:06:19 9
-项目：2022/03/15 14:06:21 insert data error: dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it.
-项目：2022/03/15 14:07:03 9
-项目：2022/03/15 14:07:05 insert data error: dial tcp 127.0.0.1:3306: connectex: No connection could be made because the target machine actively refused it.
-项目：2022/03/16 17:43:20 9
-项目：2022/03/16 17:43:20 insert data error: Error 1264: Out of range value for column 'telephone' at row 1
-项目：2022/03/16 17:44:33 9
-项目：2022/03/16 17:44:33 insert is Ok!
-项目：2022/03/16 17:44:33 %v {0 你好！ gh12345 12595566@qq.com 12321398557 false false }
-项目：2022/03/23 13:21:31 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:32 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:33 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:35 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:40 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:41 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:41 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:41 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:42 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:42 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:42 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:21:42 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:22:00 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:22:50 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:22:51 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:23:23 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:23:26 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:23:39 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:23:41 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:29:48 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:30:13 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:35:24 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:35:29 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:35:34 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
-项目：2022/03/23 13:35:39 http: response.Write on hijacked connection from github.com/gin-gonic/gin.(*responseWriter).Write (response_writer.go:78)
+项目：2022/03/23 17:25:18 7
+项目：2022/03/23 17:25:22 7
+项目：2022/03/23 17:25:28 7
+项目：2022/03/23 17:25:42 7
+项目：2022/03/23 17:25:44 7
+项目：2022/03/23 17:25:46 7
+项目：2022/03/23 17:26:18 6
+项目：2022/03/23 17:26:21 6
+项目：2022/03/23 17:26:22 6

@@ -2,15 +2,12 @@ package router
 
 import (
 	"Common/SQL"
-	"Common/common"
-	"database/sql"
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
 )
 
-func InitRouter(DB *sql.DB) {
+func InitRouter() {
 	//初始化路由
 	r := gin.Default()
 	r.Static("/static", "static")
@@ -20,63 +17,24 @@ func InitRouter(DB *sql.DB) {
 	r.GET("/Radio", radio)
 	r.GET("/Layout", layout)
 	r.GET("/Login", login)
+	r.POST("/Login", loginIn)
 	r.GET("/Register", register)
-	r.GET("/WebSocketB", WebSocketB)
-	r.GET("/WebSocket", WebSocket)
-	r.GET("/WsVideos", WsVideos)
-	r.GET("/WsVideos2", WsVideos2)
 
-	//用于执行用户操作的apiggg
+	wsGroup := r.Group("/ws")
+	{
+		wsGroup.GET("/WebSocketB", WebSocketB)
+		wsGroup.GET("/WebSocket", WebSocket)
+		wsGroup.GET("/WsVideos", WsVideos)
+		wsGroup.GET("/WsVideos2", WsVideos2)
+	}
+	//用于执行用户操作的API
 
 	AuthGroup := r.Group("/auth")
 	{
 		//Register 用户注册
-		AuthGroup.POST("/register", func(c *gin.Context) {
-			//前端页面填写一个待办事项 点击 提交方式 请求到这里
-			//1，从请求中把数据拿出来
-			user := SQL.User{}
-			err := c.BindJSON(&user)
-			if err != nil {
-				log.Printf("c.BindJSON faild!")
-				return
-			}
-			fmt.Println("%#v", user)
-			//判断user信息是否符合格式
-			isOk, errMsg := SQL.TodoIsOK(&user)
-			if !isOk {
-				c.JSON(http.StatusOK, gin.H{"code": 500, "errMsg": errMsg})
-				return
-			}
-			//判断用户是否建立成功 建立失败返回150 用户存在返回100 成功建立回200
-			OkValue := SQL.CreatAccount(DB, &user)
-			if OkValue != 200 {
-				if OkValue == 150 {
-					c.JSON(500, gin.H{"code": 500, "errMsg": "系统错误", "errCode": string(OkValue)})
-					return
-				}
-				c.JSON(http.StatusOK, gin.H{"code": 500, "errMsg": "用户已存在"})
-				return
-			}
-
-			token, err := common.ReleaseToken(user)
-			if err != nil {
-				c.JSON(http.StatusInternalServerError, gin.H{"code": 500, "msg": "系统异常"})
-				log.Printf("token err:%v", err)
-				return
-			}
-			log.Println("%v", user)
-			c.JSON(http.StatusOK, gin.H{"code": 200, "token": token})
-		})
+		AuthGroup.POST("/register", register)
 		//查看所有待办事项
-		AuthGroup.POST("/login", func(c *gin.Context) {
-			user := SQL.User{}
-			err := c.BindJSON(&user)
-			if err != nil {
-				log.Printf("c.BindJSON faild!")
-				return
-			}
-
-		})
+		//AuthGroup.POST("/login", login)
 		//查看某一个待办事项
 		AuthGroup.PUT("/todo/:id", func(c *gin.Context) {
 			var todo SQL.User

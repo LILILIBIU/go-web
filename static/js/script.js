@@ -6,8 +6,10 @@ const password2 = document.getElementById('password2');
 
 form.addEventListener('submit', e => {
 	e.preventDefault();
-	
-	checkInputs();
+	if( checkInputs()!==1){
+		return
+	}
+	form.onsubmit
 });
 
 function checkInputs() {
@@ -19,31 +21,38 @@ function checkInputs() {
 	
 	if(usernameValue === '') {
 		setErrorFor(username, '用户名不能为空');
+		return 0
 	} else {
 		setSuccessFor(username);
 	}
 	
 	if(emailValue === '') {
 		setErrorFor(email, '邮箱不能为空');
+		return 0
 	} else if (!isEmail(emailValue)) {
 		setErrorFor(email, '邮箱格式不正常');
+		return 0
 	} else {
 		setSuccessFor(email);
 	}
 	
 	if(passwordValue === '') {
 		setErrorFor(password, '密码不能为空');
+		return 0
 	} else {
 		setSuccessFor(password);
 	}
 	
 	if(password2Value === '') {
 		setErrorFor(password2, '密码不能为空');
+		return 0
 	} else if(passwordValue !== password2Value) {
 		setErrorFor(password2, '两次密码不正确');
+		return 0
 	} else{
 		setSuccessFor(password2);
 	}
+	return 1
 }
 
 function setErrorFor(input, message) {

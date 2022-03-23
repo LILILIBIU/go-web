@@ -13,29 +13,29 @@
 	<div class="header" >
 	  <h2 style="text-align:center">登录</h2>
     </div>
-	<form id="form" class="form">
+	<form id="form" class="form" method="post">
 		<div class="form-control">
 			<label for="username">用户名</label>
-			<input type="text" placeholder="输入账号" id="username" />
+			<input type="text" placeholder="输入账号" id="username" name="username" />
 			<i class="fas fa-check-circle"></i>
 			<i class="fas fa-exclamation-circle"></i>
 			<small>Error message</small>
 		<div class="form-control">
 			<label for="username">密码</label>
-			<input type="password" placeholder="请输入密码" id="password">
+			<input type="password" placeholder="请输入密码" id="password" name="password">
 			<i class="fas fa-check-circle"></i>
 			<i class="fas fa-exclamation-circle"></i>
 			<small>Error message</small>
 		</div>
 	
-		<button>登录</button>
+		<button type="submit">登录</button>
 		<button onclick="window.location.href = 'http://127.0.0.1:8080/Register'">注册</button>
 <!--		<button onclick="window.location.href = 'test/login.html'">TEST</button>-->
 		</div>
 	</form>
 </div>
 
-<script src="/static/js/script.js"></script>
+<!--<script src="/static/js/login.js"></script>-->
 <div style="text-align:center;">
 </div>
 </body>

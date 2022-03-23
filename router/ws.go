@@ -1,7 +1,6 @@
 package router
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"net/http"
@@ -29,18 +28,18 @@ func WebSocket(c *gin.Context) {
 	go func() {
 		for {
 			//读取ws中的数据
-			mt, message, err := ws.ReadMessage()
+			mt, _, err := ws.ReadMessage()
 			if err != nil {
 				c.Writer.Write([]byte(err.Error()))
 				break
 			}
-			fmt.Println("client message " + string(message))
+			//fmt.Println("client message " + string(message))
 			//写入ws数据
 			err = ws.WriteMessage(mt, []byte(time.Now().String()))
 			if err != nil {
 				break
 			}
-			fmt.Println("system message " + time.Now().String())
+			//fmt.Println("system message " + time.Now().String())
 		}
 	}()
 
