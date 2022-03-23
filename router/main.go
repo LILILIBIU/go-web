@@ -4,6 +4,7 @@ import (
 	"Common/SQL"
 	"Common/common"
 	"database/sql"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -20,6 +21,10 @@ func InitRouter(DB *sql.DB) {
 	r.GET("/Layout", layout)
 	r.GET("/Login", login)
 	r.GET("/Register", register)
+	r.GET("/WebSocketB", WebSocketB)
+	r.GET("/WebSocket", WebSocket)
+	r.GET("/WsVideos", WsVideos)
+	r.GET("/WsVideos2", WsVideos2)
 
 	//用于执行用户操作的apiggg
 
@@ -35,6 +40,7 @@ func InitRouter(DB *sql.DB) {
 				log.Printf("c.BindJSON faild!")
 				return
 			}
+			fmt.Println("%#v", user)
 			//判断user信息是否符合格式
 			isOk, errMsg := SQL.TodoIsOK(&user)
 			if !isOk {

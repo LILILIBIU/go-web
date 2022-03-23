@@ -5,7 +5,7 @@ import (
 	"github.com/spf13/viper"
 )
 
-//定义接收配置文件的结构体
+// DataBaseConnection 定义接收配置文件的结构体
 type DataBaseConnection struct {
 	IpAddress    string
 	Port         int
@@ -14,7 +14,7 @@ type DataBaseConnection struct {
 	DataBaseName string
 }
 
-func main() {
+func ConfInit() {
 	config := viper.New()
 	//配置文件名（不带扩展名）
 	config.SetConfigName("conf")

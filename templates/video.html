@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .asd{border:1px solid #00F7DE;width:401px;height:300px}
+  </style>
+</head>
+<body>
+<div>
+  <video class="asd"></video>
+</div>
+</body>
+<script>
+  var constraints={video:true};
+  navigator.mediaDevices.getUserMedia(constraints)
+  .then(function (mediaStream) {
+    var video=document.querySelector('video')
+    video.srcObject=mediaStream;
+    video.onloadedmetadata=function () {
+      video.play();
+    }
+  });
+
+</script>
+</html>

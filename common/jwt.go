@@ -33,6 +33,7 @@ func ReleaseToken(user SQL.User) (string, error) {
 	}
 	return tokenString, nil
 }
+
 func ParseToken(tokenString string) (*jwt.Token, *Claims, error) {
 	claims := &Claims{}
 
