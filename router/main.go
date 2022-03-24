@@ -2,6 +2,7 @@ package router
 
 import (
 	"Common/SQL"
+	"Common/middle"
 	"github.com/gin-gonic/gin"
 	"log"
 	"net/http"
@@ -14,7 +15,6 @@ func InitRouter() {
 	//告诉gin框架去哪里找模板
 	r.LoadHTMLGlob("templates/*")
 	r.Use()
-	r.POST("/testlog", testlog)
 	r.GET("/", root)
 	r.GET("/Radio", radio)
 	r.GET("/Layout", layout)
@@ -40,6 +40,7 @@ func InitRouter() {
 		//用户登录
 		AuthGroup.GET("/Login", login)
 		AuthGroup.POST("/Login", loginIn)
+		AuthGroup.POST("/Info", middle.Authmiddleware(), Info)
 		//查看所有待办事项
 		//AuthGroup.POST("/login", login)
 		//查看某一个待办事项

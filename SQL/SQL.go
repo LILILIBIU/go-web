@@ -57,9 +57,8 @@ func Close() {
 //	fmt.Printf("ID:%d Title:%s Status:%d\n", u.ID, u.Title, u.Status)
 //}
 func Query(name string) *User {
-	fmt.Printf(name)
 	u := User{}
-	sqlStr := fmt.Sprintf("select id, name, password from user where name='%s'", name)
+	sqlStr := fmt.Sprintf("select * from user where name='%s'", name)
 	//sqlStr = fmt.Sprint(sqlStr, name)
 	//name = "'" + name + "'"
 	// 非常重要：确保QueryRow之后调用Scan方法，否则持有的数据库链接不会被释放
@@ -70,6 +69,17 @@ func Query(name string) *User {
 	fmt.Printf("id:%v name:%v password:%v\n", u.ID, u.Name, u.Password)
 	return &u
 }
+
+//func QueryID(name uint) *User {
+//	u := User{}
+//	sqlStr := fmt.Sprintf("select id, name, password from user where id=%s", name)
+//	err := DB.Get(&u, sqlStr)
+//	if err != nil {
+//		fmt.Printf("scan failed, err:%v\n", err)
+//	}
+//	fmt.Printf("id:%v name:%v password:%v\n", u.ID, u.Name, u.Password)
+//	return &u
+//}
 
 func CreatAccount(user *User) uint8 {
 	//对
@@ -105,7 +115,7 @@ func CreatAccount(user *User) uint8 {
 //	log.Printf("Delete Ok!")
 //}
 
-func TodoIsOK(user *User, flag bool) (bool, string) {
+func ListIsOK(user *User, flag bool) (bool, string) {
 	//匹配电子邮箱
 	if flag {
 		pattern := `\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*` //匹配电子邮箱

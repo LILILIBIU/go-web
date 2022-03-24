@@ -11,7 +11,7 @@ import (
 var jwtKey = []byte("cbjcbsjcb")
 
 type Claims struct {
-	UserId uint
+	UserName string
 	jwt.StandardClaims
 }
 
@@ -19,7 +19,7 @@ type Claims struct {
 func ReleaseToken(user *SQL.User) (string, error) {
 	expirationTime := time.Now().Add(7 * 24 * time.Hour)
 	claims := &Claims{
-		UserId: user.ID,
+		UserName: user.Name,
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expirationTime.Unix(),
 			IssuedAt:  time.Now().Unix(),
@@ -37,7 +37,7 @@ func ReleaseToken(user *SQL.User) (string, error) {
 func ParseToken(tokenString string) (*jwt.Token, *Claims, error) {
 	claims := &Claims{}
 
-	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (i interface{}, err error) {
 		return jwtKey, nil
 	})
 	return token, claims, err
