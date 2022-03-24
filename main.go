@@ -4,7 +4,6 @@ import (
 	"Common/SQL"
 	"Common/common/chatServer"
 	"Common/router"
-	"fmt"
 	"log"
 	"os"
 )
@@ -24,7 +23,6 @@ func main() {
 	chatServer.InitChatServer()
 	router.InitRouter()
 	//初始化chatServer
-	fmt.Printf("main正常！")
 
 	//chatServer.Server.ListenMessage()
 }

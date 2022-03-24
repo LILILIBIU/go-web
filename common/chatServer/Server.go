@@ -47,11 +47,11 @@ func (s *ServerStruct) ListenMessage() {
 // BroadCast 广播方法
 func (s *ServerStruct) BroadCast(user *WsUser, msg string) {
 	sendMsg := "[" + user.Name + "]" + user.Name + ":" + msg
-	log.Printf("在BroadCast里面！\n")
-	log.Println(sendMsg)
+	//log.Printf("在BroadCast里面！\n")
+	//log.Println(sendMsg)
 	//把消息发送给广播channel
 	s.Message <- sendMsg
-	log.Println(sendMsg)
+	//log.Println(sendMsg)
 
 }
 
@@ -83,26 +83,8 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 			//log.Printf("%T", buf)
 			msg := string(buf)
 			log.Println("读数据之后！")
-			log.Println(msg)
+			//log.Println(msg)
 			user.DoMessage(msg)
-			//err = Conn.WriteMessage(mt, []byte(time.Now().String()))
-			//if err != nil {
-			//	break
-			//}
-			//n, err := Conn.Read(buf)
-			//if err != nil && err != io.EOF {
-			//	fmt.Printf("Handler, read buf 失败！err:%v\n", err)
-			//	return
-			//}
-			//if n == 0 {
-			//	user.Offline()
-			//	return
-			//}
-			//msg := string(buf[:n-1])
-			////将得到的消息进行广播
-			//user.DoMessage(msg)
-			////用户操作即活跃
-			//isLive <- true
 		}
 	}()
 	//当前阻塞

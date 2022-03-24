@@ -20,7 +20,8 @@ func InitRouter() {
 	r.GET("/Layout", layout)
 	r.GET("/Login", login)
 	r.POST("/Login", loginIn)
-	r.GET("/Register", register)
+	r.GET("/Register", registerGet)
+	r.POST("/Register", register)
 
 	wsGroup := r.Group("/ws")
 	{
@@ -66,7 +67,7 @@ func InitRouter() {
 
 	//默认端口8080
 
-	err := r.Run(":8080")
+	err := r.Run(":8888")
 	if err != nil {
 		log.Printf("r.run faild!")
 		return
