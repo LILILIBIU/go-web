@@ -8,7 +8,7 @@ import (
 
 //jwt加密密钥
 
-var jwtKey = []byte("fegrhfgfd")
+var jwtKey = []byte("cbjcbsjcb")
 
 type Claims struct {
 	UserId uint
@@ -16,7 +16,7 @@ type Claims struct {
 }
 
 // ReleaseToken 生成颁发Token
-func ReleaseToken(user SQL.User) (string, error) {
+func ReleaseToken(user *SQL.User) (string, error) {
 	expirationTime := time.Now().Add(7 * 24 * time.Hour)
 	claims := &Claims{
 		UserId: user.ID,
@@ -41,4 +41,11 @@ func ParseToken(tokenString string) (*jwt.Token, *Claims, error) {
 		return jwtKey, nil
 	})
 	return token, claims, err
+}
+func JwtIsOk(tokenString string) bool {
+	_, _, err := ParseToken(tokenString)
+	if err != nil {
+		return false
+	}
+	return true
 }

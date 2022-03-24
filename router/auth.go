@@ -12,6 +12,9 @@ import (
 func login(c *gin.Context) {
 	c.HTML(http.StatusOK, "Login.html", nil)
 }
+func registerGet(c *gin.Context) {
+	c.HTML(http.StatusOK, "Register.html", nil)
+}
 func register(c *gin.Context) {
 	//前端页面填写一个待办事项 点击 提交方式 请求到这里
 	//1，从请求中把数据拿出来
@@ -39,7 +42,7 @@ func register(c *gin.Context) {
 		return
 	}
 
-	token, err := common.ReleaseToken(user)
+	token, err := common.ReleaseToken(&user)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"code": 500, "msg": "系统异常"})
 		log.Printf("token err:%v", err)
@@ -47,4 +50,16 @@ func register(c *gin.Context) {
 	}
 	log.Println("%v", user)
 	c.JSON(http.StatusOK, gin.H{"code": 200, "token": token})
+}
+func testlog(c *gin.Context) {
+	u := SQL.User{}
+	err := c.BindJSON(&u)
+	if err != nil {
+		log.Printf("err:%v", err)
+	}
+	if u.Token == "" {
+		log.Printf("无tokrn!")
+	}
+	jwtToken, claims, err := common.ParseToken(u.Token)
+	log.Printf("%v\n,%v\n,%v\n", jwtToken, claims, err)
 }

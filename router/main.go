@@ -13,6 +13,8 @@ func InitRouter() {
 	r.Static("/static", "static")
 	//告诉gin框架去哪里找模板
 	r.LoadHTMLGlob("templates/*")
+	r.Use()
+	r.POST("/testlog", testlog)
 	r.GET("/", root)
 	r.GET("/Radio", radio)
 	r.GET("/Layout", layout)
@@ -32,7 +34,11 @@ func InitRouter() {
 	AuthGroup := r.Group("/auth")
 	{
 		//Register 用户注册
+		AuthGroup.GET("/register", registerGet)
 		AuthGroup.POST("/register", register)
+		//用户登录
+		AuthGroup.GET("/Login", login)
+		AuthGroup.POST("/Login", loginIn)
 		//查看所有待办事项
 		//AuthGroup.POST("/login", login)
 		//查看某一个待办事项

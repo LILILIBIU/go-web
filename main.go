@@ -2,7 +2,9 @@ package main
 
 import (
 	"Common/SQL"
+	"Common/common/chatServer"
 	"Common/router"
+	"fmt"
 	"log"
 	"os"
 )
@@ -19,5 +21,10 @@ func main() {
 	//初始化数据库
 	SQL.Init()
 	//初始化路由
+	chatServer.InitChatServer()
 	router.InitRouter()
+	//初始化chatServer
+	fmt.Printf("main正常！")
+
+	//chatServer.Server.ListenMessage()
 }

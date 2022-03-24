@@ -1,7 +1,6 @@
 package SQL
 
 import (
-	"database/sql"
 	_ "database/sql/driver"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -12,21 +11,23 @@ import (
 )
 
 type User struct {
-	ID        uint   `json:"id"`
-	Name      string `json:"name"`
-	Password  string `json:"password"`
-	Email     string `json:"email"`
-	Telephone string `json:"telephone"`
-	Sex       bool   `json:"sex"`
-	Status    bool   `json:"status"`
-	Title     string `json:"title"`
+	ID        uint        `json:"-"`
+	Name      string      `json:"name"`
+	Password  string      `json:"password"`
+	Email     string      `json:"email"`
+	Telephone string      `json:"telephone"`
+	Sex       bool        `json:"sex"`
+	Token     string      `json:"token"`
+	Status    bool        `json:"status"`
+	LiveID    string      `json:"liveid"`
+	Title     string      `json:"title"`
+	Ch        chan string `json:"-"`
 }
 
 var DB *sqlx.DB
 
 // Init 初始化MySQL连接
 func Init() (err error) {
-	// "user:password@tcp(host:port)/dbname"
 	dsn := fmt.Sprintf("root:123456@tcp(localhost:3306)/user?parseTime=true&loc=Local")
 	DB, err = sqlx.Connect("mysql", dsn)
 	if err != nil {
@@ -55,14 +56,19 @@ func Close() {
 //	}
 //	fmt.Printf("ID:%d Title:%s Status:%d\n", u.ID, u.Title, u.Status)
 //}
-func Query(db *sql.DB, name string) string {
-	var password string
-	row := db.QueryRow("SELECT password FROM user WHERE name = ?", name)
-	err := row.Scan(&password)
+func Query(name string) *User {
+	fmt.Printf(name)
+	u := User{}
+	sqlStr := fmt.Sprintf("select id, name, password from user where name='%s'", name)
+	//sqlStr = fmt.Sprint(sqlStr, name)
+	//name = "'" + name + "'"
+	// 非常重要：确保QueryRow之后调用Scan方法，否则持有的数据库链接不会被释放
+	err := DB.Get(&u, sqlStr)
 	if err != nil {
-		fmt.Printf("ROW.SCAN 失败！")
+		fmt.Printf("scan failed, err:%v\n", err)
 	}
-	return password
+	fmt.Printf("id:%v name:%v password:%v\n", u.ID, u.Name, u.Password)
+	return &u
 }
 
 func CreatAccount(user *User) uint8 {
@@ -97,28 +103,6 @@ func CreatAccount(user *User) uint8 {
 //	//var result int
 //	//rows.Scan(&result)
 //	log.Printf("Delete Ok!")
-//}
-
-//func FindDB(DB *sql.DB, todoList []User) []User {
-//	sqlStr := "select * from bubble where name= "
-//	var u User
-//	// 非常重要：确保QueryRow之后调用Scan方法，否则持有的数据库链接不会被释放
-//	//err := DB.QueryRow(sqlStr, userid).Scan(&u.ID, &u.Title, &u.Status) //单行查询用QueryRow
-//	rows, err := DB.Query(sqlStr) //多行查询用Query
-//	if err != nil {
-//		fmt.Printf("scan failed, err:%v\n", err)
-//		return make([]User, 0)
-//	}
-//	for rows.Next() {
-//		err := rows.Scan(&u.ID, &u.Title, &u.Status)
-//		if err != nil {
-//			log.Fatal(err)
-//		}
-//		todoList = append(todoList, u)
-//
-//		log.Printf("get data, ID: %d, Title: %s, Status: %d", u.ID, u.Title, u.Status)
-//	}
-//	return todoList
 //}
 
 func TodoIsOK(user *User, flag bool) (bool, string) {
