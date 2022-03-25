@@ -29,7 +29,6 @@ func InitRouter() {
 		wsGroup.GET("/WebSocketB", WebSocketB)
 		wsGroup.GET("/WebSocket", WebSocket)
 		wsGroup.GET("/WsVideos", WsVideos)
-		wsGroup.GET("/WsVideos2", WsVideos2)
 	}
 	//用于执行用户操作的API
 
