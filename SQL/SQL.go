@@ -56,6 +56,7 @@ func Close() {
 //	}
 //	fmt.Printf("ID:%d Title:%s Status:%d\n", u.ID, u.Title, u.Status)
 //}
+
 func Query(name string) *User {
 	u := User{}
 	sqlStr := fmt.Sprintf("select * from user where name='%s'", name)
