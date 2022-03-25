@@ -3,8 +3,8 @@ package main
 import (
 	"Common/SQL"
 	"Common/common/chatServer"
+	"Common/config"
 	"Common/router"
-	"github.com/spf13/viper"
 	"log"
 	"os"
 )
@@ -19,7 +19,7 @@ func init() {
 }
 func main() {
 	//初始化配置文件
-	InitConfig()
+	config.InitConfig()
 	//初始化数据库
 	SQL.Init()
 	//初始化chatServer
@@ -27,14 +27,4 @@ func main() {
 	//初始化路由
 	router.InitRouter()
 
-}
-func InitConfig() {
-	workDir, _ := os.Getwd()
-	viper.SetConfigName("application")
-	viper.SetConfigType("yml")
-	viper.AddConfigPath(workDir + "/config")
-	err := viper.ReadInConfig()
-	if err != nil {
-		panic("读取配置出错！")
-	}
 }

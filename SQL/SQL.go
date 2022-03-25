@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
 	"github.com/jmoiron/sqlx"
+	"github.com/spf13/viper"
 	"golang.org/x/crypto/bcrypt"
 	"log"
 	"regexp"
@@ -28,7 +29,12 @@ var DB *sqlx.DB
 
 // Init 初始化MySQL连接
 func Init() (err error) {
-	dsn := fmt.Sprintf("root:123456@tcp(localhost:3306)/user?parseTime=true&loc=Local")
+	username := viper.GetString("mysql.user")
+	password := viper.GetString("mysql.password")
+	host := viper.GetString("mysql.ip")
+	port := viper.GetString("mysql.port")
+	database := viper.GetString("mysql.database")
+	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?parseTime=true&loc=Local", username, password, host, port, database)
 	DB, err = sqlx.Connect("mysql", dsn)
 	if err != nil {
 		return
@@ -42,20 +48,6 @@ func Init() (err error) {
 func Close() {
 	_ = DB.Close()
 }
-
-// Query // QueryRow 查询单条数据示例
-//func QueryRow(DB *sql.DB, userid int) {
-//	sqlStr := "select id, name, age from bubble where id=?"
-//	var u User
-//	// 非常重要：确保QueryRow之后调用Scan方法，否则持有的数据库链接不会被释放
-//	err := DB.QueryRow(sqlStr, userid).Scan(&u.ID, &u.Title, &u.Status) //单行查询用QueryRow
-//	//rows,err := DB.Query(sqlStr, "xys")//多行查询用Query
-//	if err != nil {
-//		fmt.Printf("scan failed, err:%v\n", err)
-//		return
-//	}
-//	fmt.Printf("ID:%d Title:%s Status:%d\n", u.ID, u.Title, u.Status)
-//}
 
 func Query(name string) *User {
 	u := User{}

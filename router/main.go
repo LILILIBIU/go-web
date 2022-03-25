@@ -4,6 +4,7 @@ import (
 	"Common/SQL"
 	"Common/middle"
 	"github.com/gin-gonic/gin"
+	"github.com/spf13/viper"
 	"log"
 	"net/http"
 )
@@ -68,7 +69,7 @@ func InitRouter() {
 
 	//默认端口8080
 
-	err := r.Run(":8888")
+	err := r.Run(":" + viper.GetString("server.port"))
 	if err != nil {
 		log.Printf("r.run faild!")
 		return
