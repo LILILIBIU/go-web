@@ -5,18 +5,9 @@ import (
 	"Common/common/chatServer"
 	"Common/config"
 	"Common/router"
-	"log"
-	"os"
+	"fmt"
 )
 
-func init() {
-	log.SetPrefix("项目：")
-	f, err := os.OpenFile("./XX.log", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0666)
-	if err != nil {
-		log.Fatalln(err)
-	}
-	log.SetOutput(f)
-}
 func main() {
 	//初始化配置文件
 	config.InitConfig()
@@ -26,5 +17,5 @@ func main() {
 	chatServer.InitChatServer()
 	//初始化路由
 	router.InitRouter()
-
+	fmt.Println("Hello World!")
 }

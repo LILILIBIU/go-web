@@ -1,14 +1,15 @@
 package config
 
 import (
-	"github.com/spf13/viper"
 	"log"
+
+	"github.com/spf13/viper"
 )
 
 func InitConfig() {
 	viper.SetConfigName("application")
 	viper.SetConfigType("toml")
-	viper.AddConfigPath("./")
+	viper.AddConfigPath("/config")
 	//viper.SetDefault("redis.port", 6381)
 	err := viper.ReadInConfig()
 	if err != nil {
