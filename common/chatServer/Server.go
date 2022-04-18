@@ -1,9 +1,11 @@
 package chatServer
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
 	"log"
+	"runtime"
 	"sync"
 	"time"
 )
@@ -61,13 +63,19 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 	log.Printf("连接成功！")
 	user.Online()
 	//监听用户是否活跃channel
-	isLive := make(chan bool)
+	isLive := make(chan struct{})
+	isClose := make(chan struct{})
 	go func() {
 		for {
-			msg := <-user.Ch
-			err := user.Conn.WriteMessage(1, []byte(msg))
-			if err != nil {
-				log.Printf("user.Conn.WriteMessage err:%v\n", err)
+			select {
+			case <-isLive:
+				runtime.Goexit()
+			default:
+				msg := <-user.Ch
+				err := user.Conn.WriteMessage(1, []byte(msg))
+				if err != nil {
+					log.Printf("user.Conn.WriteMessage err:%v\n", err)
+				}
 			}
 		}
 	}()
@@ -80,6 +88,7 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 				log.Printf("读取ws中的数据,err:%v", err)
 				break
 			}
+			isLive <- struct{}{}
 			//log.Printf("%T", buf)
 			msg := string(buf)
 			log.Println("读数据之后！")
@@ -88,6 +97,7 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 		}
 	}()
 	//当前阻塞
+LOOP:
 	for {
 		select {
 		case <-isLive:
@@ -96,10 +106,15 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 			//已经超时
 			user.SendMsg("窗口超时！")
 			user.Offline()
-			conn.Close()
+			isClose <- struct{}{}
+			err := conn.Close()
+			if err != nil {
+				fmt.Printf("conn.Close err:%v\n", err)
+				break LOOP
+			}
 			close(user.Ch)
 			//退出当前Handler
-			return
+			break LOOP
 		}
 	}
 }

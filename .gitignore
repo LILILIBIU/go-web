@@ -5,6 +5,7 @@
 *.so
 *.dylib
 leetcode/
+test/
 common/jwtutil.go
 common/JwtAuth.go
 # Test binary, built with `go test -c`
