@@ -14,11 +14,11 @@ var upGrader = websocket.Upgrader{
 	},
 }
 
-func WebSocketB(c *gin.Context) {
+func WebSocket(c *gin.Context) {
 	c.HTML(http.StatusOK, "WebSocketB.html", nil)
 }
 
-func WebSocket(c *gin.Context) {
+func WebSocketB(c *gin.Context) {
 	ws, err := upGrader.Upgrade(c.Writer, c.Request, nil)
 	if err != nil {
 		c.Writer.Write([]byte(err.Error()))
