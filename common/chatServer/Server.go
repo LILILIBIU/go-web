@@ -68,7 +68,7 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 	go func() {
 		for {
 			select {
-			case <-isLive:
+			case <-isClose:
 				runtime.Goexit()
 			default:
 				msg := <-user.Ch
@@ -82,18 +82,23 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 	//接收客户端发来的消息
 	go func() {
 		for {
-			//读取ws中的数据
-			_, buf, err := conn.ReadMessage()
-			if err != nil {
-				log.Printf("读取ws中的数据,err:%v", err)
-				break
+			select {
+			case <-isClose:
+				runtime.Goexit()
+			default:
+				//读取ws中的数据
+				_, buf, err := conn.ReadMessage()
+				if err != nil {
+					log.Printf("读取ws中的数据,err:%v", err)
+					break
+				}
+				isLive <- struct{}{}
+				//log.Printf("%T", buf)
+				msg := string(buf)
+				log.Println("读数据之后！")
+				//log.Println(msg)
+				user.DoMessage(msg)
 			}
-			isLive <- struct{}{}
-			//log.Printf("%T", buf)
-			msg := string(buf)
-			log.Println("读数据之后！")
-			//log.Println(msg)
-			user.DoMessage(msg)
 		}
 	}()
 	//当前阻塞
@@ -107,6 +112,7 @@ LOOP:
 			user.SendMsg("窗口超时！")
 			user.Offline()
 			isClose <- struct{}{}
+			isClose <- struct{}{}
 			err := conn.Close()
 			if err != nil {
 				fmt.Printf("conn.Close err:%v\n", err)
@@ -114,6 +120,7 @@ LOOP:
 			}
 			close(user.Ch)
 			//退出当前Handler
+			runtime.GC()
 			break LOOP
 		}
 	}
