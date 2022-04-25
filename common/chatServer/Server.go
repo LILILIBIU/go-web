@@ -88,6 +88,8 @@ func (s *ServerStruct) Handler(conn *websocket.Conn, c *gin.Context) {
 				_, buf, err := conn.ReadMessage()
 				if err != nil {
 					log.Printf("读取ws中的数据,err:%v", err)
+					user.Offline()
+					runtime.Goexit()
 					break
 				}
 				isLive <- struct{}{}
