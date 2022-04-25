@@ -10,6 +10,7 @@ import (
 	"time"
 )
 
+// ServerStruct 服务结构体
 type ServerStruct struct {
 	OnlineMap map[string]*WsUser
 	mapLock   sync.RWMutex
@@ -32,9 +33,6 @@ func (s *ServerStruct) ListenMessage() {
 		for {
 			log.Printf("ListenMessage 正常启动！")
 			msg := <-s.Message
-			log.Printf("ListenMessage 阻塞后")
-			log.Printf("%v", msg)
-			log.Println("ListenMessage 打印后！")
 			//将Msg发送给所有在线用户
 			s.mapLock.RLock()
 			for _, v := range s.OnlineMap {
@@ -110,15 +108,14 @@ LOOP:
 		case <-time.After(time.Second * 30):
 			//已经超时
 			user.SendMsg("窗口超时！")
+			isClose <- struct{}{}
+			isClose <- struct{}{}
 			user.Offline()
-			isClose <- struct{}{}
-			isClose <- struct{}{}
 			err := conn.Close()
 			if err != nil {
 				fmt.Printf("conn.Close err:%v\n", err)
 				break LOOP
 			}
-			close(user.Ch)
 			//退出当前Handler
 			runtime.GC()
 			break LOOP

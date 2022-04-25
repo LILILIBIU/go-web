@@ -15,7 +15,7 @@ var upGrader = websocket.Upgrader{
 }
 
 func WebSocket(c *gin.Context) {
-	c.HTML(http.StatusOK, "WebSocketB.html", nil)
+	c.HTML(http.StatusOK, "WebSocket.html", nil)
 }
 
 func WebSocketB(c *gin.Context) {

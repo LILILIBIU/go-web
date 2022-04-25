@@ -43,14 +43,14 @@ function checkInputs() {
 		setSuccessFor(password);
 	}
 	
-	if(password2Value === '') {
-		setErrorFor(password2, '密码不能为空');
+	if(password2Value !== passwordValue) {
+		setErrorFor(password, '密码不能为空');
 		return 0
 	} else if(passwordValue !== password2Value) {
-		setErrorFor(password2, '两次密码不正确');
+		setErrorFor(password, '两次密码不正确');
 		return 0
 	} else{
-		setSuccessFor(password2);
+		setSuccessFor(password);
 	}
 	return 1
 }

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<div id="player" ></div>
+</body>
+<script src="http://cdn.jsdelivr.net/npm/xgplayer/browser/index.js" charset="utf-8"></script>
+<script src="http://cdn.jsdelivr.net/npm/xgplayer-flv.js/browser/index.js" charset="utf-8"></script>
+<script type="text/javascript">
+    new window.FlvJsPlayer({
+        id: 'player',
+        isLive: false,
+        playsinline: true,
+        url: 'http://127.0.0.1:7001/live/movie.flv',
+        autoplay: true,
+        height: window.innerHeight,
+        width: window.innerWidth
+    });
+</script>
+</html>

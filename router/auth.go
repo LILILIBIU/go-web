@@ -11,6 +11,11 @@ import (
 	"net/http"
 )
 
+type User struct {
+	username string
+	password string
+}
+
 func registerGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "Register.html", nil)
 }
@@ -58,6 +63,15 @@ func loginIn(c *gin.Context) {
 	user := SQL.User{}
 	user.Name = c.PostForm("username")
 	user.Password = c.PostForm("password")
+	//decoder := json.NewDecoder(c.Request.Body)
+	//var luser User
+	//err := decoder.Decode(&luser)
+	//if err != nil {
+	//	panic(err)
+	//}
+	//fmt.Println(luser)
+	//user.Name = luser.username
+	//user.Password = luser.password
 	//判断user信息是否符合格式
 	isOk, errMsg := SQL.ListIsOK(&user, false)
 	if !isOk {
@@ -76,7 +90,9 @@ func loginIn(c *gin.Context) {
 		}
 		log.Printf("%v\n", user)
 		fmt.Printf("\n%v\n", token)
-		response.Response(c, http.StatusOK, 200, gin.H{"token": token}, "登陆成功")
+		//response.Response(c, http.StatusOK, 200, gin.H{"token": token}, "登陆成功")
+		c.JSON(http.StatusOK, gin.H{"token": token})
+		return
 	}
 
 }

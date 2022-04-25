@@ -15,9 +15,10 @@ func InitRouter() {
 	r.Static("/static", "static")
 	//告诉gin框架去哪里找模板
 	r.LoadHTMLGlob("templates/*")
-	r.Use()
+	r.Use(middle.CORSMiddleware())
 	r.GET("/", root)
 	r.GET("/Radio", radio)
+	r.GET("/videos2", videos2)
 	r.GET("/Layout", layout)
 	r.GET("/Login", login)
 	r.POST("/Login", loginIn)

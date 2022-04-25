@@ -12,6 +12,9 @@ func root(c *gin.Context) {
 func radio(c *gin.Context) {
 	c.HTML(http.StatusOK, "Radio.html", nil)
 }
+func videos2(c *gin.Context) {
+	c.HTML(http.StatusOK, "videos2.html", nil)
+}
 
 func layout(c *gin.Context) {
 	c.HTML(http.StatusOK, "Layout.html", nil)
