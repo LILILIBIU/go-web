@@ -1,4 +1,4 @@
-package router
+package controllers
 
 import (
 	"Common/SQL"
@@ -7,6 +7,7 @@ import (
 	"Common/response"
 	"fmt"
 	"github.com/gin-gonic/gin"
+	"golang.org/x/crypto/bcrypt"
 	"log"
 	"net/http"
 )
@@ -16,10 +17,10 @@ type User struct {
 	password string
 }
 
-func registerGet(c *gin.Context) {
+func RegisterGet(c *gin.Context) {
 	c.HTML(http.StatusOK, "Register.html", nil)
 }
-func register(c *gin.Context) {
+func Register(c *gin.Context) {
 	//前端页面填写一个待办事项 点击 提交方式 请求到这里
 	//1，从请求中把数据拿出来
 	user := SQL.User{}
@@ -54,33 +55,24 @@ func register(c *gin.Context) {
 	log.Println("%v", user)
 	response.Response(c, http.StatusOK, 500, gin.H{"token": token}, "注册成功")
 }
-func login(c *gin.Context) {
+func Login(c *gin.Context) {
 	c.HTML(http.StatusOK, "Login.html", nil)
 }
-func loginIn(c *gin.Context) {
+func LoginIn(c *gin.Context) {
 	//前端页面填写一个待办事项 点击 提交方式 请求到这里
 	//1，从请求中把数据拿出来
 	user := SQL.User{}
 	user.Name = c.PostForm("username")
 	user.Password = c.PostForm("password")
-	//decoder := json.NewDecoder(c.Request.Body)
-	//var luser User
-	//err := decoder.Decode(&luser)
-	//if err != nil {
-	//	panic(err)
-	//}
-	//fmt.Println(luser)
-	//user.Name = luser.username
-	//user.Password = luser.password
-	//判断user信息是否符合格式
 	isOk, errMsg := SQL.ListIsOK(&user, false)
 	if !isOk {
 		response.Response(c, http.StatusOK, 500, nil, errMsg)
 		return
 	}
 	u := SQL.Query(user.Name)
-	if u.Password != user.Password {
+	if bcrypt.CompareHashAndPassword([]byte(u.Password), []byte(user.Password)) != nil {
 		log.Printf("信息错误！")
+		response.Response(c, http.StatusOK, 500, nil, "账号或密码错误")
 	} else {
 		token, err := common.ReleaseToken(&user)
 		if err != nil {

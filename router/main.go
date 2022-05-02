@@ -2,6 +2,8 @@ package router
 
 import (
 	"Common/SQL"
+	"Common/controllers"
+	"Common/controllers/ws"
 	"Common/middle"
 	"github.com/gin-gonic/gin"
 	"github.com/spf13/viper"
@@ -16,32 +18,33 @@ func InitRouter() {
 	//告诉gin框架去哪里找模板
 	r.LoadHTMLGlob("templates/*")
 	r.Use(middle.CORSMiddleware())
-	r.GET("/", root)
-	r.GET("/Radio", radio)
-	r.GET("/videos2", videos2)
-	r.GET("/Layout", layout)
-	r.GET("/Login", login)
-	r.POST("/Login", loginIn)
-	r.GET("/Register", registerGet)
-	r.POST("/Register", register)
+	r.GET("/", controllers.Root)
+	r.GET("/Radio", controllers.Radio)
+	r.GET("/videos2", controllers.Videos2)
+	r.GET("/Layout", controllers.Layout)
+	r.GET("/Login", controllers.Login)
+	r.POST("/Login", controllers.LoginIn)
+	r.GET("/Register", controllers.RegisterGet)
+	r.POST("/Register", controllers.Register)
+	r.POST("/Live", controllers.LiveRegister)
 
 	wsGroup := r.Group("/ws")
 	{
-		wsGroup.GET("/WebSocketB", WebSocketB)
-		wsGroup.GET("/WebSocket", WebSocket)
-		wsGroup.GET("/WsVideos", WsVideos)
+		wsGroup.GET("/WebSocketB", ws.WebSocketB)
+		wsGroup.GET("/WebSocket", ws.WebSocket)
+		wsGroup.GET("/WsVideos", controllers.WsVideos)
 	}
 	//用于执行用户操作的API
 
 	AuthGroup := r.Group("/auth")
 	{
 		//Register 用户注册
-		AuthGroup.GET("/register", registerGet)
-		AuthGroup.POST("/register", register)
+		AuthGroup.GET("/register", controllers.RegisterGet)
+		AuthGroup.POST("/register", controllers.Register)
 		//用户登录
-		AuthGroup.GET("/Login", login)
-		AuthGroup.POST("/Login", loginIn)
-		AuthGroup.POST("/Info", middle.Authmiddleware(), Info)
+		AuthGroup.GET("/Login", controllers.Login)
+		AuthGroup.POST("/Login", controllers.LoginIn)
+		AuthGroup.POST("/Info", middle.Authmiddleware(), controllers.Info)
 		//查看所有待办事项
 		//AuthGroup.POST("/login", login)
 		//查看某一个待办事项

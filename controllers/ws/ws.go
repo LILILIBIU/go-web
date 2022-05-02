@@ -1,4 +1,4 @@
-package router
+package ws
 
 import (
 	"Common/common/chatServer"

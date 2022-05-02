@@ -82,7 +82,6 @@ func CreatAccount(user *User) uint8 {
 		//加密失败返回150
 		return 150
 	}
-
 	_, err = DB.Exec(`INSERT INTO user ( name, password,telephone,sex,email) VALUES ( ?, ?,?,?,?);`, user.Name, Password, user.Telephone, user.Sex, user.Email)
 	//defer rows.Close()
 	if err != nil {
@@ -93,7 +92,7 @@ func CreatAccount(user *User) uint8 {
 	//var result int
 	//rows.Scan(&result)
 	log.Printf("insert is Ok!")
-	DB.Close()
+	//DB.Close()
 	return 200
 }
 

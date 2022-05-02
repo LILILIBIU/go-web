@@ -2,5 +2,8 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rpc/grpc-go" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/rpc/protobuf" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/some/grpc-go" vcs="Git" />
   </component>
 </project>
