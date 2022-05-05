@@ -8,7 +8,7 @@ import (
 func InitConfig() {
 	viper.SetConfigName("application")
 	viper.SetConfigType("toml")
-	viper.AddConfigPath("E:\\桌面\\GOspace\\webDemo\\web")
+	viper.AddConfigPath("../web")
 	//viper.SetDefault("redis.port", 6381)
 	err := viper.ReadInConfig()
 	if err != nil {
